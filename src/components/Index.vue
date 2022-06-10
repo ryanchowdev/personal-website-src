@@ -210,7 +210,7 @@
                                 <li>Forum for users to have discussions</li>
                             </ul>
                         </div>
-                        <a class="button is-link" href="https://github.com/Scott-Gibson-Coding/Stock-Market-Imitation" target="_blank" rel="noopener noreferer">
+                        <a class="button is-link" href="https://github.com/ryanchowdev/Stock-Market-Imitation" target="_blank" rel="noopener noreferer">
                             <span class="icon-text">
                                 <span class="icon">
                                     <i class="fa-brands fa-github"></i>
