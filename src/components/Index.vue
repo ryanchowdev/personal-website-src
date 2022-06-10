@@ -1,12 +1,12 @@
 <style>
+@import 'bulma/css/bulma.css';
+@import '@fortawesome/fontawesome-free/css/all.css';
 [v-cloak] {
     display: none;
 }
 </style>
 
 <template>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <div class="section" id="vue-target" v-cloak>
         <!-- Overview -->
         <div class="has-text-centered">
@@ -30,7 +30,7 @@
         </div>
 
         <!-- About Me -->
-        <div class="about has-text-centered" v-if="show_about_tab">
+        <div class="has-text-centered" v-if="show_about_tab">
             Hello! My name is Ryan Chow.
             <br>I am a 4th year Computer Science B.S. student at University of California, Santa Cruz.
             <br>I am expecting to graduate in June 2022.
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Skills -->
-        <div class="skills has-text-centered" v-if="show_skills_tab">
+        <div class="has-text-centered" v-if="show_skills_tab">
             <nav class="panel">
                 <p class="panel-tabs">
                     <a :class="{'is-active': show_all_skills}" @click="activate_all_skills">All</a>
@@ -90,7 +90,11 @@
         </div>
 
         <!-- Projects -->
-        <div class="projects has-text-centered" v-if="show_projects_tab">
+        <div class="has-text-centered" v-if="show_projects_tab">
+            <p>
+                Click the projects to learn more!
+            </p>
+            <hr>
             <!-- List of projects -->
             <aside class="menu">
                 <p class="menu-label">
@@ -117,7 +121,7 @@
 
             <!-- Personal website card -->
             <div class="modal" :class="{'is-active': show_personal_website}">
-                <div class="modal-background"></div>
+                <div class="modal-background" @click="activate_personal_website(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">Personal Website</p>
@@ -132,13 +136,21 @@
                                 <li>Tells the reader about myself</li>
                             </ul>
                         </div>
+                        <a class="button is-link" href="https://github.com/ryanchowdev/ryanchowdev.github.io" target="_blank" rel="noopener noreferer">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+                                <span>Github Repository</span>
+                            </span>
+                        </a>
                     </section>
                 </div>
             </div>
 
             <!-- RoommateHelper card -->
             <div class="modal" :class="{'is-active': show_roommatehelper}">
-                <div class="modal-background"></div>
+                <div class="modal-background" @click="activate_roommatehelper(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">RoommateHelper</p>
@@ -148,11 +160,10 @@
                         A Discord bot that facilitates living with roommates.
                         <div class="content">
                             <ul>
-                                <li>In progress!</li>
                                 <li>Built with Python using discord.py, a Python wrapper for the Discord API</li>
                                 <li>Uses SQLite to maintain persistent data after the bot is restarted</li>
                                 <li>Lead team of five developers and utilized SCRUM practices</li>
-                                <li>Deployed to Azure</li>
+                                <li>Deployed to Microsoft Azure</li>
                                 <li>Schedule tasks, such as taking out the garbage</li>
                                 <li>Set alarms</li>
                                 <li>Debt system to track who owes money for bills, rent, splitting groceries, etc.</li>
@@ -166,13 +177,21 @@
                                 <li>Intuitive help menu so that anyone can use the bot with ease</li>
                             </ul>
                         </div>
+                        <a class="button is-link" href="https://github.com/ryanchowdev/RoommateHelper" target="_blank" rel="noopener noreferer">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+                                <span>Github Repository</span>
+                            </span>
+                        </a>
                     </section>
                 </div>
             </div>
 
             <!-- Stock Market Imitation card -->
             <div class="modal" :class="{'is-active': show_stock_market_imitation}">
-                <div class="modal-background"></div>
+                <div class="modal-background" @click="activate_stock_market_imitation(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">Stock Market Imitation</p>
@@ -182,21 +201,30 @@
                         A web page that simulates stock market trading.
                         <div class="content">
                             <ul>
-                                <li>In progress!</li>
                                 <li>Built with Py4web, Vue.js, and Bulma</li>
-                                <li>Collaborated with team of five developers and utilized SCRUM practices</li>
+                                <li>Collaborated with team of five developers</li>
                                 <li>Dynamic website which supports multiple users</li>
+                                <li>Simulated stock market behavior</li>
                                 <li>Buy and sell stocks, and watch your portfolio change without risking real money</li>
                                 <li>Detailed graphs to show your portfolio's performance, as well as historical stock prices</li>
+                                <li>Forum for users to have discussions</li>
                             </ul>
                         </div>
+                        <a class="button is-link" href="https://github.com/Scott-Gibson-Coding/Stock-Market-Imitation" target="_blank" rel="noopener noreferer">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+                                <span>Github Repository</span>
+                            </span>
+                        </a>
                     </section>
                 </div>
             </div>
 
             <!-- UCSC ClassCheck card -->
             <div class="modal" :class="{'is-active': show_ucsc_classcheck}">
-                <div class="modal-background"></div>
+                <div class="modal-background" @click="activate_ucsc_classcheck(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">UCSC ClassCheck</p>
@@ -212,13 +240,21 @@
                                 <li>Monitors the current enrollment of classes, allowing the user to sign up as soon a spot opens up</li>
                             </ul>
                         </div>
+                        <a class="button is-link" href="https://github.com/ryanchowdev/UCSC-ClassCheck" target="_blank" rel="noopener noreferer">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+                                <span>Github Repository</span>
+                            </span>
+                        </a>
                     </section>
                 </div>
             </div>
 
             <!-- Jeff-IX card -->
             <div class="modal" :class="{'is-active': show_jeff_ix}">
-                <div class="modal-background"></div>
+                <div class="modal-background" @click="activate_jeff_ix(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
                         <p class="modal-card-title">Jeff-IX</p>
@@ -237,13 +273,21 @@
                                 <li>Currency conversion</li>
                             </ul>
                         </div>
+                        <a class="button is-link" href="https://github.com/ryanchowdev/Jeff-IX" target="_blank" rel="noopener noreferer">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </span>
+                                <span>Github Repository</span>
+                            </span>
+                        </a>
                     </section>
                 </div>
             </div>
         </div>
 
         <!-- Contact -->
-        <div class="block contact has-text-centered" v-if="show_contact_tab">
+        <div class="block has-text-centered" v-if="show_contact_tab">
             <div class="pb-5">
                 <p>
                     Here you can find my personal links. Check out my Github repositories and LinkedIn portfolio. Email me for any inquiries.
