@@ -9,6 +9,9 @@
 <template>
     <div class="section" id="vue-target" v-cloak>
         <!-- Overview -->
+        <div class="has-text-right has-text-info">
+            <p>Time in California: {{time}}</p>
+        </div>
         <div class="has-text-centered">
             <figure class="image is-128x128 is-inline-block">
                 <img class="is-rounded" src="../assets/ryan.jpeg">
@@ -32,9 +35,9 @@
         <!-- About Me -->
         <div class="has-text-centered" v-if="show_about_tab">
             Hello! My name is Ryan Chow.
-            <br>I am a 4th year Computer Science B.S. student at University of California, Santa Cruz.
-            <br>I am expecting to graduate in June 2022.
-            <br>I am located in the Bay Area, California.
+            <br>I graduated from the University of California, Santa Cruz in June 2022 with a B.S. in Computer Science.
+            <br>I achieved a 3.86 GPA, earning the Cum Laude honor.
+            <br>I am located in the SF Bay Area, California.
             <br>I am a native English speaker.
         </div>
 
@@ -115,7 +118,7 @@
                     2020
                 </p>
                 <ul class="menu-list">
-                    <li><a @click="activate_jeff_ix(true)">Jeff-IX</a></li>
+                    <li><a @click="activate_prototype_bot(true)">Prototype Bot</a></li>
                 </ul>
             </aside>
 
@@ -170,9 +173,9 @@
                                 <li>Check the weather, using data from OpenWeatherMap API</li>
                                 <li>Look for nearby places of interest, such as pizza or sushi, using Google Maps</li>
                                 <li>Play music so you can listen together</li>
-                                <li>Calculator with parser for support for complex equations to work on homework or study together</li>
+                                <li>Calculator with parser to support complex equations, useful for studying together or dividing expenses</li>
                                 <li>Create polls to make decisions such as where to eat</li>
-                                <li>Flip a coin if you need a random decision</li>
+                                <li>Flip a coin if you need to make a random decision</li>
                                 <li>Set rules that roommates can agree on</li>
                                 <li>Intuitive help menu so that anyone can use the bot with ease</li>
                             </ul>
@@ -252,13 +255,13 @@
                 </div>
             </div>
 
-            <!-- Jeff-IX card -->
-            <div class="modal" :class="{'is-active': show_jeff_ix}">
-                <div class="modal-background" @click="activate_jeff_ix(false)"></div>
+            <!-- Prototype Bot card -->
+            <div class="modal" :class="{'is-active': show_prototype_bot}">
+                <div class="modal-background" @click="activate_prototype_bot(false)"></div>
                 <div class="modal-card">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">Jeff-IX</p>
-                        <button class="delete" aria-label="close" @click="activate_jeff_ix(false)"></button>
+                        <p class="modal-card-title">Prototype Bot</p>
+                        <button class="delete" aria-label="close" @click="activate_prototype_bot(false)"></button>
                     </header>
                     <section class="modal-card-body has-text-left">
                         A multi-purpose Discord bot.
@@ -273,7 +276,7 @@
                                 <li>Currency conversion</li>
                             </ul>
                         </div>
-                        <a class="button is-link" href="https://github.com/ryanchowdev/Jeff-IX" target="_blank" rel="noopener noreferer">
+                        <a class="button is-link" href="https://github.com/ryanchowdev/prototype-bot" target="_blank" rel="noopener noreferer">
                             <span class="icon-text">
                                 <span class="icon">
                                     <i class="fa-brands fa-github"></i>
@@ -347,11 +350,35 @@ export default {
             show_roommatehelper: false,
             show_stock_market_imitation: false,
             show_ucsc_classcheck: false,
-            show_jeff_ix: false,
+            show_prototype_bot: false,
+            interval: null,
+            time: null,
         }
     },
 
+    beforeUnmount() {
+        clearInterval(this.interval)
+    },
+
+    created() {
+        // Initialize time
+        this.time = this.get_time()
+        // Update time every second
+        this.interval = setInterval(() => {
+            this.time = this.get_time()
+        }, 1000)
+    },
+
     methods: {
+        get_time : function() {
+            // Use California time
+            return Intl.DateTimeFormat('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZone: 'America/Los_Angeles',
+            }).format()
+        },
         hide_all_tabs: function() {
             this.show_about_tab = false;
             this.show_skills_tab = false;
@@ -408,8 +435,8 @@ export default {
         activate_ucsc_classcheck: function(flag) {
             this.show_ucsc_classcheck = flag;
         },
-        activate_jeff_ix: function(flag) {
-            this.show_jeff_ix = flag;
+        activate_prototype_bot: function(flag) {
+            this.show_prototype_bot = flag;
         },
     }
 }
